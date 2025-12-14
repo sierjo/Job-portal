@@ -10,7 +10,7 @@ import java.util.Date;
 @Table(name = "users")
 public class Users {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
     @Column(unique = true)
     private String email;
@@ -21,18 +21,18 @@ public class Users {
     private Date registrationDate;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "userTypeId", referencedColumnName = "userTypeId")
-    private UsersType userType;
+    private UsersType userTypeId;
 
     public Users() {
     }
 
-    public Users(int userId, String email, String password, boolean isActive, Date registrationDate, UsersType userType) {
+    public Users(int userId, String email, String password, boolean isActive, Date registrationDate, UsersType userTypeId) {
         this.userId = userId;
         this.email = email;
         this.password = password;
         this.isActive = isActive;
         this.registrationDate = registrationDate;
-        this.userType = userType;
+        this.userTypeId = userTypeId;
     }
 
     public int getUserId() {
@@ -75,12 +75,12 @@ public class Users {
         this.registrationDate = registrationDate;
     }
 
-    public UsersType getUserType() {
-        return userType;
+    public UsersType getUserTypeId() {
+        return userTypeId;
     }
 
-    public void setUserType(UsersType userType) {
-        this.userType = userType;
+    public void setUserTypeId(UsersType userTypeId) {
+        this.userTypeId = userTypeId;
     }
 
     @Override
@@ -91,7 +91,7 @@ public class Users {
                 ", password='" + password + '\'' +
                 ", isActive=" + isActive +
                 ", registrationDate=" + registrationDate +
-                ", userType=" + userType +
+                ", userTypeId=" + userTypeId +
                 '}';
     }
 }
