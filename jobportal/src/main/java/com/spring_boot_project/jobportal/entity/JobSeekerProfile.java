@@ -13,7 +13,7 @@ public class JobSeekerProfile {
     @JoinColumn(name = "user_account_id")
     @MapsId
     private Users userId;
-    private String firstMane;
+    private String firstName;
     private String lastName;
     private String city;
     private String state;
@@ -23,7 +23,7 @@ public class JobSeekerProfile {
     private String resume;
     @Column(nullable = true, length = 64)
     private String profilePhoto;
-    @OneToMany(targetEntity = Skills.class, cascade = CascadeType.ALL, mappedBy = "job_seeker_profile")
+    @OneToMany(targetEntity = Skills.class, cascade = CascadeType.ALL, mappedBy = "jobSeekerProfile")
     private List<Skills> skills;
 
     public JobSeekerProfile() {
@@ -33,10 +33,10 @@ public class JobSeekerProfile {
         this.userId = userId;
     }
 
-    public JobSeekerProfile(int userAccountId, Users userId, String firstMane, String lastName, String city, String state, String country, String workAuthorization, String employmentType, String resume, String profilePhoto, List<Skills> skills) {
+    public JobSeekerProfile(int userAccountId, Users userId, String firstName, String lastName, String city, String state, String country, String workAuthorization, String employmentType, String resume, String profilePhoto, List<Skills> skills) {
         this.userAccountId = userAccountId;
         this.userId = userId;
-        this.firstMane = firstMane;
+        this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;
         this.state = state;
@@ -64,12 +64,12 @@ public class JobSeekerProfile {
         this.userId = userId;
     }
 
-    public String getFirstMane() {
-        return firstMane;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstMane(String firstMane) {
-        this.firstMane = firstMane;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -149,7 +149,7 @@ public class JobSeekerProfile {
         return "JobSeekerProfile{" +
                 "userAccountId=" + userAccountId +
                 ", userId=" + userId +
-                ", firstMane='" + firstMane + '\'' +
+                ", firstMane='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
