@@ -51,6 +51,7 @@ public class UsersController {
             model.addAttribute("getAllTypes", usersTypes);
             model.addAttribute("user", new Users());
             return "register";
+//            return "redirect:/dashboard/"; //  Попробовать если возникнет ошибка
 // END Processing an error message related to email duplication ↑
         }
         usersService.addNew(users);
