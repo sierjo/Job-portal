@@ -1,9 +1,12 @@
 package com.spring_boot_project.jobportal.services;
 
-import com.spring_boot_project.jobportal.entity.JobPostActivity;
+import com.spring_boot_project.jobportal.entity.*;
 import com.spring_boot_project.jobportal.repository.JobPostActivityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class JobPostActivityService {
@@ -17,5 +20,23 @@ public class JobPostActivityService {
 
     public JobPostActivity addNew(JobPostActivity jobPostActivity) {
         return jobPostActivityRepository.save(jobPostActivity);
+    }
+
+    public List<RecruiterJobsDTO> getRecruiterJobs(int recruiter) {
+        /*jobPostActivityRepository.getRecruiterJobs(recruiter);
+         *  + Cnrl + alt + v*/
+        List<IRecruiterJobs> recruiterJobsDtos = jobPostActivityRepository.getRecruiterJobs(recruiter);
+        List<RecruiterJobsDTO> recruiterJobsDTOList = new ArrayList<>();
+        for (IRecruiterJobs rec : recruiterJobsDtos) { // Convert info from database to DTOs
+            JobLocation loc = new JobLocation(rec.getLocationID(), rec.getCity(), rec.getState(), rec.getCountry());
+
+            // So as I'm going through this loop, will construct a DTO based on information that we retrieved from the database.
+            /* new JobCompany(rec.getCompanyId(),rec.getName(),"");
+             *  + Cnrl + alt + v*/
+            JobCompany comp = new JobCompany(rec.getCompanyId(), rec.getName(), "");
+            recruiterJobsDTOList.add(new RecruiterJobsDTO(rec.getTotalCandidates(), rec.getJob_post_id(),
+                    rec.getJob_title(), loc, comp));
+        }
+        return recruiterJobsDTOList;
     }
 }
