@@ -108,6 +108,13 @@ public class RecruiterProfile {
         return profilePhoto;
     }
 
+
+    @Transient
+    public String getPhotosImagePath() {
+        if (profilePhoto == null) return null;
+        return "/photos/recruiter/" + userAccoutId + "/" + profilePhoto;
+    }
+
     public void setProfilePhoto(String profilePhoto) {
         this.profilePhoto = profilePhoto;
     }
