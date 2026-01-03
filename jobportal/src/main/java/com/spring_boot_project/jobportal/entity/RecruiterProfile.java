@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "recruiter_profile")
 public class RecruiterProfile {
     @Id
-    private int userAccoutId;
+    private int userAccountId;
     @OneToOne
     @JoinColumn(name = "user_account_id")
     @MapsId
@@ -24,8 +24,8 @@ public class RecruiterProfile {
     public RecruiterProfile() {
     }
 
-    public RecruiterProfile(int userAccoutId, Users usersId, String firstName, String lastName, String city, String state, String country, String company, String profilePhoto) {
-        this.userAccoutId = userAccoutId;
+    public RecruiterProfile(int userAccountId, Users usersId, String firstName, String lastName, String city, String state, String country, String company, String profilePhoto) {
+        this.userAccountId = userAccountId;
         this.usersId = usersId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -40,12 +40,12 @@ public class RecruiterProfile {
         this.usersId = users;
     }
 
-    public int getUserAccoutId() {
-        return userAccoutId;
+    public int getUserAccountId() {
+        return userAccountId;
     }
 
-    public void setUserAccoutId(int userAccoutId) {
-        this.userAccoutId = userAccoutId;
+    public void setUserAccountId(int userAccoutId) {
+        this.userAccountId = userAccoutId;
     }
 
     public Users getUsersId() {
@@ -112,7 +112,7 @@ public class RecruiterProfile {
     @Transient
     public String getPhotosImagePath() {
         if (profilePhoto == null) return null;
-        return "/photos/recruiter/" + userAccoutId + "/" + profilePhoto;
+        return "/photos/recruiter/" + userAccountId + "/" + profilePhoto;
     }
 
     public void setProfilePhoto(String profilePhoto) {
@@ -122,7 +122,7 @@ public class RecruiterProfile {
     @Override
     public String toString() {
         return "RecruiterProfile{" +
-                "userAccoutId=" + userAccoutId +
+                "userAccoutId=" + userAccountId +
                 ", usersId=" + usersId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

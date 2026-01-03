@@ -78,7 +78,7 @@ public class RecruiterProfileController {
                     UsernameNotFoundException("User not found"));
             // Associating recruiter profile with existing user account ↓
             recruiterProfile.setUsersId(users);
-            recruiterProfile.setUserAccoutId(users.getUserId());
+            recruiterProfile.setUserAccountId(users.getUserId());
             // End Associating recruiter profile with existing user account ↓
         }
         model.addAttribute("profile", recruiterProfile);
@@ -92,7 +92,7 @@ public class RecruiterProfileController {
 
         // Save Recruiter profile in Database
         RecruiterProfile savedUser = recruiterProfileService.addNew(recruiterProfile);
-        String uploadDir = "photos/recruiter/" + savedUser.getUserAccoutId();
+        String uploadDir = "photos/recruiter/" + savedUser.getUserAccountId();
         try {
             // Read profile image from request multipartfile
             FileUploadUtil.saveFile(uploadDir, fileName, multipartFile); // Save image on the server in directory: photos/recruiter

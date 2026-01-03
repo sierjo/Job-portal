@@ -144,6 +144,7 @@ public class JobSeekerProfile {
         this.skills = skills;
     }
 
+    @Transient
     public String getPhotosImagePath() {
         if (profilePhoto == null || userAccountId == null) return null;
         return "/photos/candidate" + userAccountId + "/" + profilePhoto;
